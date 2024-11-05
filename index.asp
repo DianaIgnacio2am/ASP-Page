@@ -28,8 +28,10 @@ input {
 .Estilo2 { 
     color: #333333; /* Un negro más claro para "Usuario" y "Contraseña" */
 }
-
 </style>
+
+<!-- Incluir la biblioteca CryptoJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 
 <!-- Script para mostrar el mensaje de error -->
 <script type="text/javascript">
@@ -40,6 +42,14 @@ function mostrarError() {
     } else if (error == "2") {
         alert("Usuario no encontrado. Inténtelo de nuevo."); // Mensaje de usuario no encontrado
     }
+}
+
+function hashPassword() {
+    var passwordField = document.login.contra;
+    var hashedPassword = CryptoJS.SHA256(passwordField.value).toString();
+    passwordField.value = hashedPassword; // Reemplaza la contraseña con su hash
+
+
 }
 </script>
 
@@ -55,7 +65,7 @@ function mostrarError() {
             <div class="titulo01 Estilo1">Sistema de Distribuidora</div>
             <hr width="300">
             <table width="292" height="115" border="1" bordercolor="#000000" bgcolor="#808080" class="tabla_login">
-                <form name="login" method="post" action="verificar.asp">
+                <form name="login" method="post" action="verificar.asp" onsubmit="hashPassword();">
                     <tr>
                         <td colspan="2" align="center" bgcolor="#808080"><span class="Estilo1"><b>Ingreso al Sistema</b></span></td>
                     </tr>
@@ -78,3 +88,4 @@ function mostrarError() {
 </table>
 </body>
 </html>
+
