@@ -84,6 +84,7 @@
         Do While Not rsVentas.EOF
             dim total_ventas, color_clase, nombre_mes
             total_ventas = CDBL(rsVentas.fields("total_ventas")) ' Asegurarse de que sea un número
+
             nombre_mes = rsVentas.fields("nombre_mes")
 
             ' Determinar el color
@@ -98,7 +99,8 @@
             ' Hacer que el nombre del mes sea un enlace
             Response.Write "<tr class='" & color_clase & "'>"
             Response.Write "<td><a href='detalle_ventas.asp?id=" & sucursalId & "&mes=" & rsVentas.fields("mes") & "' style='color: #000;'>" & nombre_mes & "</a></td>"
-            Response.Write "<td>" & total_ventas & "</td>"
+Response.Write "<td>$" & FormatNumber(total_ventas, 2) & "</td>"
+
             Response.Write "</tr>"
             rsVentas.MoveNext
         Loop

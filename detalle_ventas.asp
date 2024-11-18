@@ -77,7 +77,8 @@ rsDetalles.Open "SELECT v.venta_id, CONCAT(c.nombre, ' ', c.apellido) AS cliente
             Response.Write "<td>" & rsDetalles.fields("venta_id") & "</td>"
             Response.Write "<td>" & rsDetalles.fields("cliente_nombre") & "</td>" ' Mostrar nombre del cliente
             Response.Write "<td>" & rsDetalles.fields("fecha_venta") & "</td>"
-            Response.Write "<td>" & rsDetalles.fields("total") & "</td>"
+Response.Write "<td>$" & FormatNumber(CDBL(rsDetalles.fields("total")), 2) & "</td>"
+
             ' Agregar el enlace "Ver Detalles"
             Response.Write "<td><a href='detalle_producto.asp?venta_id=" & rsDetalles.fields("venta_id") & "'>Ver Detalles</a></td>"
             Response.Write "</tr>"

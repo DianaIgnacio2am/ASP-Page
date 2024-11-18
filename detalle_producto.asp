@@ -90,8 +90,9 @@
         Response.Write "<td>" & rsProductos.fields("producto_id") & "</td>" ' ID del producto
         Response.Write "<td>" & rsProductos.fields("nombre") & "</td>" ' Nombre del producto
         Response.Write "<td>" & rsProductos.fields("cantidad") & "</td>"
-        Response.Write "<td>" & rsProductos.fields("precio_unitario") & "</td>"
-        Response.Write "<td>" & rsProductos.fields("subtotal") & "</td>"
+Response.Write "<td>$" & FormatNumber(CDBL(rsProductos.fields("precio_unitario")), 2) & "</td>"
+Response.Write "<td>$" & FormatNumber(CDBL(rsProductos.fields("subtotal")), 2) & "</td>"
+
         Response.Write "</tr>"
 
         ' Sumar los subtotales, asegurándose de que sea numérico
@@ -105,7 +106,8 @@
     ' Mostrar el total al final de la tabla
     Response.Write "<tr>"
     Response.Write "<td colspan='4' style='text-align: right; font-weight: bold;'>Total:</td>"
-    Response.Write "<td>" & totalGeneral & "</td>"
+Response.Write "<td>$" & FormatNumber(CDBL(totalGeneral), 2) & "</td>"
+
     Response.Write "</tr>"
     
     Response.Write "</table>"
